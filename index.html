@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Title</h1>
+    <div>
+        <input type="text" id="first-name" placeholder="first name">
+        <input type="text" placeholder="last name">
+    </div>
+    <nav>
+        <button class="show-main" id="main-skills">Skills</button>
+        <button class="show-main" id="main-notes">Notes</button>
+        <button class="show-main" id="main-sessions">Sessions</button>
+        <button class="show-main" id="main-schedule">Schedule</button>
+    </nav>
+    <!-- <main class="row space-between"> -->
+    <main>
+        <div id="main-left">
+            <div class="main-content" id="skills">
+                <h2>Skills<button class="dev-mode">+</button></h2>
+                <div class="skill-container" id="sk1">
+                    <input type="number" class="star-rating" id="sk1-rating" value="0" step="1" min="0" max="5">
+                    <div class="row space-between">
+                        <h3>skill 1<button class="dev-mode">edit</button><button class="dev-mode">X</button></h3>
+                        <span>
+                            <span class="star-container" id="sk1-star-container">
+                                <span class="star">☆</span>
+                                <span class="star">☆</span>
+                                <span class="star">☆</span>
+                                <span class="star">☆</span>
+                                <span class="star">☆</span>
+                            </span>
+                            <span class="refresh-stars">↺</span>
+                            <span class="show-note">📄</span>
+                        </span>
+                    </div>
+                    <textarea class="notepad" id="sk1-notepad">textarea</textarea>
+                </div>
+                <div class="skill-container" id="sk2">
+                    <input type="number" class="star-rating" id="sk2-rating" value="0" step="1" min="0" max="5">
+                    <div class="row space-between">
+                        <h3>skill 2<button class="dev-mode">edit</button><button class="dev-mode">X</button></h3>
+                        <span>
+                            <span class="star-container" id="sk2-star-container">
+                                <span class="star">☆</span>
+                                <span class="star">☆</span>
+                                <span class="star">☆</span>
+                                <span class="star">☆</span>
+                                <span class="star">☆</span>
+                            </span>
+                            <span class="refresh-stars">↺</span>
+                            <span class="show-note">📄</span>
+                        </span>
+                    </div>
+                    <textarea class="notepad" id="sk2-notepad">textarea</textarea>
+                </div>
+                <div class="skill-container" id="sk3">
+                    <input type="number" class="star-rating" id="sk3-rating" value="0" step="1" min="0" max="5">
+                    <div class="row space-between">
+                        <h3>skill 3<button class="dev-mode">edit</button><button class="dev-mode">X</button></h3>
+                        <span>
+                            <span class="star-container" id="sk3-star-container">
+                                <span class="star">☆</span>
+                                <span class="star">☆</span>
+                                <span class="star">☆</span>
+                                <span class="star">☆</span>
+                                <span class="star">☆</span>
+                            </span>
+                            <span class="refresh-stars">↺</span>
+                            <span class="show-note">📄</span>
+                        </span>
+                    </div>
+                    <textarea class="notepad" id="sk3-notepad">textarea</textarea>
+                </div>
+                <div class="skill-container" id="sk4">
+                    <input type="number" class="star-rating" id="sk4-rating" value="0" step="1" min="0" max="5">
+                    <div class="row space-between">
+                        <h3>skill 4<button class="dev-mode">edit</button><button class="dev-mode">X</button></h3>
+                        <span>
+                            <span class="star-container" id="sk4-star-container">
+                                <span class="star">☆</span>
+                                <span class="star">☆</span>
+                                <span class="star">☆</span>
+                                <span class="star">☆</span>
+                                <span class="star">☆</span>
+                            </span>
+                            <span class="refresh-stars">↺</span>
+                            <span class="show-note">📄</span>
+                        </span>
+                    </div>
+                    <textarea class="notepad" id="sk4-notepad">textarea</textarea>
+                </div>
+            </div>
+            <div class="main-content" id="notes">
+                <h2>Notes</h2>
+                <textarea>notes here</textarea>
+            </div>
+            <div class="main-content" id="sessions">
+                <h2>Sessions</h2>
+                <div class="flex-column">
+                    <select>
+                        <option>Date 1</option>
+                        <option>Date 2</option>
+                    </select>
+                    <button>Show entire Log</button>
+                </div>
+            </div>
+            <div class="main-content" id="schedule">
+                <h2>Schedule</h2>
+                <div class="flex-column">
+                    <label for="date">Date</label>
+                    <input type="date" id="date">
+                    <label for="start-time">Start Time</label>
+                    <input type="time" id="start-time">
+                    <label for="end-time">End Time</label>
+                    <input type="time" id="end-time">
+                </div>
+            </div>
+        </div>
+
+        <div id="main-right">
+            <header>
+                <h2>title for current display content</h2>
+            </header>
+            <div id="main-right-content">
+                <div id="all-instructions">
+                    <pre class="instructions" id="sk1-instructions">instructions for skill 1</pre>
+                    <pre class="instructions" id="sk2-instructions">instructions for skill 2</pre>
+                    <pre class="instructions" id="sk3-instructions">instructions for skill 3</pre>
+                    <pre class="instructions" id="sk4-instructions">instructions for skill 4</pre>
+                    <button class="dev-mode">update instructions</button>
+                </div>
+                <div id="live-display">
+                    Other info goes here.
+                </div>
+            </div>
+        </div>
+    </main>
+    <nav><button>Load</button><button>Save</button></nav>
+    <script src="javascript.js"></script>
+</body>
+
+</html>
