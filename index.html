@@ -16,7 +16,6 @@
     </div>
     <nav>
         <button class="show-main" id="main-skills">Skills</button>
-        <button class="show-main dev-mode" id="main-add-skill">Add Skill</button>
         <button class="show-main" id="main-notes">Notes</button>
         <button class="show-main" id="main-sessions">Sessions</button>
         <button class="show-main" id="main-schedule">Schedule</button>
@@ -25,17 +24,14 @@
     <main>
         <div id="main-left">
             <div class="main-content" id="skills">
-                <h2>Skills<button class="dev-mode">+</button></h2>
+                <h2>Skills <button id="expand-collapse-skills-button">⇅</button><button class="show-main dev-mode" id="main-add-skill">+</button></h2>
                 <div class="skill-category">
                     <h3 class="nested-menu">Skill Category A</h3>
                     <div class="skill-container" id="sk1">
                         <input type="number" class="star-rating" id="sk1-rating" value="0" step="1" min="0" max="5">
                         <div class="row space-between">
-                            <h4><span class="skill-name-h4" id="sk1-h4">skill 1</span><button
-                                    class="dev-mode edit-skill-button">✐</button><button class="dev-mode">&uarr;<button
-                                        class="dev-mode">&darr;</button></button><button class="dev-mode">X</button>
-                            </h4>
-                            <span>
+                            <h4><span class="skill-name-h4" id="sk1-h4">skill 1</span></h4>
+                            <span class="stars-and-controls-container">
                                 <span class="star-container" id="sk1-star-container">
                                     <span class="star">☆</span>
                                     <span class="star">☆</span>
@@ -47,6 +43,8 @@
                                 <span class="show-note">📄</span>
                             </span>
                         </div>
+                        <button class="dev-mode edit-skill-button">✐</button><button class="dev-mode">&uarr;<button
+                                class="dev-mode">&darr;</button></button><button class="dev-mode">X</button>
                         <textarea class="notepad" id="sk1-notepad">textarea</textarea>
                     </div>
                     <div class="skill-container" id="sk2">
@@ -75,7 +73,9 @@
                     <div class="skill-container" id="sk3">
                         <input type="number" class="star-rating" id="sk3-rating" value="0" step="1" min="0" max="5">
                         <div class="row space-between">
-                            <h4><span class="skill-name-h4" id="sk1-h4">skill 3</span><button class="dev-mode edit-skill-button">✐</button><button class="dev-mode">&uarr;<button class="dev-mode">&darr;</button><button class="dev-mode">X</button>
+                            <h4><span class="skill-name-h4" id="sk1-h4">skill 3</span><button
+                                    class="dev-mode edit-skill-button">✐</button><button class="dev-mode">&uarr;<button
+                                        class="dev-mode">&darr;</button><button class="dev-mode">X</button>
                             </h4>
                             <span>
                                 <span class="star-container" id="sk3-star-container">
@@ -172,6 +172,7 @@
         </div>
     </main>
     <nav><button>Load</button><button>Save</button></nav>
+    <script src="database.js"></script>
     <script src="javascript.js"></script>
 </body>
 
