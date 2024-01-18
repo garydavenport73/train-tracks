@@ -76,9 +76,11 @@
         width: 100%;
         overflow-y: scroll;
     }
-    /* .dev-mode{
-        display:none;
-    } */
+
+
+    .star-rating{
+        display: none;
+    }
 
     @media only screen and (max-width: 600px) {
         body{
