@@ -24,7 +24,7 @@
     <main>
         <div id="main-left">
             <div class="main-content" id="skills">
-                <h2>Skills <button id="expand-collapse-skills-button">⇅</button><button class="show-main dev-mode" id="main-add-skill">+</button></h2>
+                <h2>Skills <button id="expand-collapse-skills-button">⇅</button><button id="toggle-notes">⇅📄</button><button class="show-main dev-mode" id="main-add-skill">+</button></h2>
                 <div class="skill-category">
                     <h3 class="nested-menu">Skill Category A</h3>
                     <div class="skill-container" id="sk1">
@@ -171,7 +171,7 @@
             </div>
         </div>
     </main>
-    <nav><button>Load</button><button>Save</button></nav>
+    <nav><button>Load</button><button>Save</button><button onclick="rebuildContent()">test</button></nav>
     <script src="database.js"></script>
     <script src="javascript.js"></script>
 </body>
