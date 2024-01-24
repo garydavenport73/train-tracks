@@ -16,6 +16,7 @@ function buildElementsFromDatabase() {//note database is a global object
     for (let i = 0; i < categories.length; i++) {
         str += "<div class='skill-category'>";
         str += "<h3 class='nested-menu'>" + categories[i] + "</h3>";
+        str += "<span><span class='move-category-up dev-mode'>&uarr;</span><span class='move-category-down dev-mode'>&darr;</span></span>";
         for (let j = 0; j < initObj.length; j++) {
             if (initObj[j]["category"] === categories[i]) {
                 //build here
@@ -61,6 +62,44 @@ function buildElementsFromDatabase() {//note database is a global object
     //     <button class="dev-mode">update instructions</button>
 }
 
+function addEventListenersToMoveCategoryUp() {
+    let arrows = document.getElementsByClassName("move-category-up");
+    for (let i = 0; i < arrows.length; i++) {
+        arrows[i].addEventListener("click", moveCategoryUp);
+    }
+}
+
+function removeEventListenersToMoveCategoryUp() {
+    let arrows = document.getElementsByClassName("move-category-up");
+    for (let i = 0; i < arrows.length; i++) {
+        arrows[i].removeEventListener("click", moveCategoryUp);
+    }
+}
+
+function moveCategoryUp(evt) {
+    alert("move category up");
+}
+
+function addEventListenersToMoveCategoryDown() {
+    let arrows = document.getElementsByClassName("move-category-down");
+    for (let i = 0; i < arrows.length; i++) {
+        arrows[i].addEventListener("click", moveCategoryDown);
+    }
+}
+
+function removeEventListenersToMoveCategoryDown() {
+    let arrows = document.getElementsByClassName("move-category-down");
+    for (let i = 0; i < arrows.length; i++) {
+        arrows[i].removeEventListener("click", moveCategoryDown);
+    }
+}
+
+function moveCategoryDown(evt) {
+    alert("move category down");
+}
+
+
+
 function addEventListenersToMainButtons() {
     let mainButtons = document.getElementsByClassName("show-main");
     for (let i = 0; i < mainButtons.length; i++) {
@@ -89,8 +128,6 @@ function showMainContent(evt) {
     document.getElementById(id).style.display = "block";
     clearHeaderInstructionsAndLiveDisplay();
 
-
-
     // console.log(evt.target.id);
     if (id === "add-skill") {
         document.getElementById("entry-skill-key").disabled = false;
@@ -98,6 +135,19 @@ function showMainContent(evt) {
         document.getElementById("entry-skill-category").value = "";
         document.getElementById("entry-skill-name").value = "";
     }
+    showUsedKeys();
+}
+
+function showUsedKeys() {
+    let usedKeys = [];
+    for (let i = 0; i < database["startupObject"].length; i++) {
+        let id = database["startupObject"][i]["base-id"];
+        if (!(usedKeys.includes(id))) {
+            usedKeys.push(id);
+        }
+    }
+    document.getElementById("used-keys").innerHTML = "<hr>Used keys:<br>" + usedKeys.toString().replace(/\,/g, ", ") + "<hr>";
+
 }
 
 function clearHeaderInstructionsAndLiveDisplay() {
@@ -467,56 +517,57 @@ function expandCollapseSkills(evt) {
 // document.getElementById("main-skills").click();
 //////////////////////////////////
 
-function addSkillToDatabase(){
+function addSkillToDatabase() {
 
-        //validate inputs
-        //key can't be taken
-        //key can't start with number
-        //check to make sure id isn't taken
+    //validate inputs
+    //key can't be taken
+    //key can't start with number
+    //check to make sure id isn't taken
     //add skill to database
     //rebuild content
 
-    let usedKeys=[];
-    for (let i=0;i<database["startupObject"].length;i++){
-        let id=database["startupObject"][i]["base-id"];
-        if (!(usedKeys.includes(id))){
+    let usedKeys = [];
+    for (let i = 0; i < database["startupObject"].length; i++) {
+        let id = database["startupObject"][i]["base-id"];
+        if (!(usedKeys.includes(id))) {
             usedKeys.push(id);
         }
     }
     //get values from inputs
-    let key=document.getElementById("entry-skill-key").value;
-    let category=document.getElementById("entry-skill-category").value;
-    let skillName=document.getElementById("entry-skill-name").value;
+    let key = document.getElementById("entry-skill-key").value;
+    let category = document.getElementById("entry-skill-category").value;
+    let skillName = document.getElementById("entry-skill-name").value;
 
-    if (usedKeys.includes(key)){ //updating
-        if (!(confirm("This will update the current entry with the key "+key+"."))){
+    if (usedKeys.includes(key)) { //updating
+        if (!(confirm("This will update the current entry with the key " + key + "."))) {
             return;
         }
-        else{
-            let rowIndex=findRowIndex("base-id",key);
+        else {
+            let rowIndex = findRowIndex(database["startupObject"], "base-id", key);
             // let row={};
-            let row=database["startupObject"][rowIndex];
-            row["base-id"]=key;
-            row["category"]=category;
-            row["name"]=skillName;
+            let row = database["startupObject"][rowIndex];
+            row["base-id"] = key; ""
+            row["category"] = category;
+            row["name"] = skillName;
+            rebuildContent();
             //row["instructions"]="";
             //database["startupObject"].push(JSON.parse(JSON.stringify(row)));
             return;
         }
     }
-    else{//used key not in index
-            let row={};
-            //let row=database["startupObject"][index];
-            row["base-id"]=key;
-            row["category"]=category;
-            row["name"]=skillName;
-            row["instructions"]="";
-            database["startupObject"].push(JSON.parse(JSON.stringify(row)));
+    else {//used key not in index
+        let row = {};
+        //let row=database["startupObject"][index];
+        row["base-id"] = key;
+        row["category"] = category;
+        row["name"] = skillName;
+        row["instructions"] = "";
+        database["startupObject"].push(JSON.parse(JSON.stringify(row)));
     }
 
 
     rebuildContent();
-    
+
 
 }
 
@@ -532,6 +583,8 @@ function rebuildContent() {
     removeEventListenersToNestedMenus();
     removeEventListenersToEditSkillButtons();
     removeEventListenersToEditSkillNameh4s();
+    removeEventListenersToMoveCategoryUp();
+    removeEventListenersToMoveCategoryDown();
     buildElementsFromDatabase();
     addEventListenersToMainButtons();
     document.getElementById("expand-collapse-skills-button").addEventListener("click", expandCollapseSkills);
@@ -542,6 +595,8 @@ function rebuildContent() {
     addEventListenersToNestedMenus();
     addEventListenersToEditSkillButtons();
     addEventListenersToEditSkillNameh4s();
+    addEventListenersToMoveCategoryUp();
+    addEventListenersToMoveCategoryDown();
     closeAllNestedMenus();
     closeAllNotepads();
     clearHeaderInstructionsAndLiveDisplay();
@@ -559,11 +614,13 @@ addEventListenersToRefreshStars();
 addEventListenersToNestedMenus();
 addEventListenersToEditSkillButtons();
 addEventListenersToEditSkillNameh4s();
-document.getElementById("add-skill-button").addEventListener("click",addSkillToDatabase);
+addEventListenersToMoveCategoryUp();
+addEventListenersToMoveCategoryDown();
+document.getElementById("add-skill-button").addEventListener("click", addSkillToDatabase);
 closeAllNestedMenus();
 closeAllNotepads();
 clearHeaderInstructionsAndLiveDisplay();
-let developerMode = true;
+let developerMode = false;
 initializeDeveloperMode();
 document.getElementById("main-skills").click();
 
