@@ -481,12 +481,21 @@ function editSkill(evt) {
     let baseId = evt.target.parentElement.id;
     //console.log(baseId);
 
+    let index=findRowIndex(database["startupObject"],"base-id",baseId);
+    console.log(index);
+
     document.getElementById("main-add-skill").click();
 
     let keyInput = document.getElementById("entry-skill-key");
     keyInput.value = baseId;
     //console.dir(keyInput);
     keyInput.disabled = true;
+
+
+    console.log(database["startupObject"][index]["category"]);
+    console.log(database["startupObject"][index]["name"]);
+    document.getElementById("entry-skill-category").value=database["startupObject"][index]["category"];
+    document.getElementById("entry-skill-name").value=database["startupObject"][index]["name"];
 
 
 }
