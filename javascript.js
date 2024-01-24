@@ -16,7 +16,7 @@ function buildElementsFromDatabase() {//note database is a global object
     for (let i = 0; i < categories.length; i++) {
         str += "<div class='skill-category'>";
         str += "<h3 class='nested-menu'>" + categories[i] + "</h3>";
-        str += "<span><span class='move-category-up dev-mode'>&uarr;</span><span class='move-category-down dev-mode'>&darr;</span></span>";
+        str += "<span><span class='move-category-up dev-mode' id='up-" + categories[i] + "'>&uarr;</span><span class='move-category-down dev-mode' id='down-" + categories[i] + "'>&darr;</span></span>";
         for (let j = 0; j < initObj.length; j++) {
             if (initObj[j]["category"] === categories[i]) {
                 //build here
@@ -77,7 +77,46 @@ function removeEventListenersToMoveCategoryUp() {
 }
 
 function moveCategoryUp(evt) {
-    alert("move category up");
+    let category = evt.target.id.replace("up-", "");
+    //alert("move category up "+category);
+
+    //make ordered array of categories and find indexes;
+
+    let arr = [];
+    let rows = database["startupObject"];
+    let newStartupObject = [];
+    for (let i = 0; i < rows.length; i++) {
+        if (!(arr.includes(rows[i]["category"]))) {
+            arr.push(rows[i]["category"]);
+        }
+    }
+    console.log(arr);
+
+    let index = arr.indexOf(category);
+    console.log(index);
+
+    if (index <= 0) {//already the lowest value, do nothing
+        return;
+    }
+
+    else {
+        //we have array of best order
+        //switch array elements
+        //console.log(arr)
+        arr[index] = arr[index - 1];
+        arr[index - 1] = category;
+
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < rows.length; j++) {
+                if (rows[j]["category"] === arr[i]) {
+                    newStartupObject.push(JSON.parse(JSON.stringify(rows[j])));
+                }
+            }
+        }
+
+        database["startupObject"]=newStartupObject;
+        rebuildContent();
+    }
 }
 
 function addEventListenersToMoveCategoryDown() {
@@ -95,7 +134,48 @@ function removeEventListenersToMoveCategoryDown() {
 }
 
 function moveCategoryDown(evt) {
-    alert("move category down");
+    let category = evt.target.id.replace("down-", "");
+    //alert("move category down " + category);
+    //make ordered array of categories and find indexes;
+
+    let arr = [];
+    let rows = database["startupObject"];
+    let newStartupObject = [];
+    for (let i = 0; i < rows.length; i++) {
+        if (!(arr.includes(rows[i]["category"]))) {
+            arr.push(rows[i]["category"]);
+        }
+    }
+    console.log(arr);
+
+    let index = arr.indexOf(category);
+    console.log(index);
+
+    if (index >= arr.length-1) {//already the highest value, do nothing
+        return;
+    }
+
+    else {
+        //we have array of best order
+        //switch array elements
+        //console.log(arr)
+        arr[index]=arr[index + 1];
+        arr[index + 1] = category;
+
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < rows.length; j++) {
+                if (rows[j]["category"] === arr[i]) {
+                    newStartupObject.push(JSON.parse(JSON.stringify(rows[j])));
+                }
+            }
+        }
+
+        database["startupObject"]=newStartupObject;
+        rebuildContent();
+    }
+
+
+
 }
 
 
@@ -517,6 +597,8 @@ function expandCollapseSkills(evt) {
 // document.getElementById("main-skills").click();
 //////////////////////////////////
 
+
+
 function addSkillToDatabase() {
 
     //validate inputs
@@ -573,7 +655,7 @@ function addSkillToDatabase() {
 
 function rebuildContent() {
     //removeEventListenersToMainButtons();
-    alert("rebuilding!");
+    //alert("rebuilding!");
     removeEventListenersToMainButtons();
     document.getElementById("expand-collapse-skills-button").removeEventListener("click", expandCollapseSkills);
     document.getElementById("toggle-notes").removeEventListener("click", toggleAllNotes);
@@ -620,7 +702,7 @@ document.getElementById("add-skill-button").addEventListener("click", addSkillTo
 closeAllNestedMenus();
 closeAllNotepads();
 clearHeaderInstructionsAndLiveDisplay();
-let developerMode = false;
+let developerMode = true;
 initializeDeveloperMode();
 document.getElementById("main-skills").click();
 
