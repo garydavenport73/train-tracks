@@ -52,7 +52,7 @@ function buildElementsFromDatabase() {//note database is a global object
     for (let i = 0; i < initObj.length; i++) {
         str += "<pre class='instruction' id='" + initObj[i]["base-id"] + "-instructions'>" + initObj[i]["instructions"] + "</pre>";
     }
-    str += "<button class='dev-mode'>update instructions</button>";
+    str += "<button class='dev-mode' id='update-instructions-button'>update instructions</button>";
 
     document.getElementById("all-instructions").innerHTML = str;
     //     <pre class="instruction" id="sk1-instructions">instructions for skill 1</pre>
@@ -269,13 +269,17 @@ function toggleNote(evt) {
 }
 
 function toggleAllNotes() {
-    let testNote = document.getElementsByClassName("notepad")[0];
-    if (testNote.style.display === "none") {
-        openAllNotePads();
+    
+    let testNotes = document.getElementsByClassName("notepad");
+    if (testNotes.length>0){
+        if (testNotes[0].style.display === "none") {
+            openAllNotePads();
+        }
+        else {
+            closeAllNotepads();
+        }
     }
-    else {
-        closeAllNotepads();
-    }
+
 }
 
 
@@ -382,7 +386,7 @@ function initializeDeveloperMode() {
         }
     }
     else {//developer mode true
-        let instructions = document.getElementsByClassName("instructions");
+        let instructions = document.getElementsByClassName("instruction");
         // console.log(instructions);
         for (let i = 0; i < instructions.length; i++) {
             instructions[i].contentEditable = true;
@@ -640,6 +644,25 @@ function moveSkillDown(evt) {
     }
 }
 
+function addEventListenerToUpdateInstructionsButton(){
+    document.getElementById("update-instructions-button").addEventListener("click",updateInstructions);
+}
+function removeEventListenerToUpdateInstructionsButton(){
+    document.getElementById("update-instructions-button").removeEventListener("click",updateInstructions);
+}
+function updateInstructions(){
+    let rows=database["startupObject"];
+    for (let i=0;i<rows.length;i++){
+        let baseId=rows[i]["base-id"];
+        let instructionPreId=baseId+"-instructions";
+        let content=document.getElementById(instructionPreId).innerText;
+        rows[i]["instructions"]=content;
+    }
+    // for (let i = 0; i < initObj.length; i++) {
+    //     str += "<pre class='instruction' id='" + initObj[i]["base-id"] + "-instructions'>" + initObj[i]["instructions"] + "</pre>";
+    // }
+    rebuildContent();
+}
 
 
 
@@ -693,23 +716,17 @@ function closeAllInstructions() {
     }
 }
 
-
-
-
-
 function expandCollapseSkills(evt) {
-    let testContainer = document.getElementsByClassName("skill-container")[0];
-
-    if (testContainer.style.display != "none") {
-        closeAllNestedMenus();
-    }
-    else {
-        openAllNestedMenus();
+    let testContainers = document.getElementsByClassName("skill-container");
+    if (testContainers.length>0){
+        if (testContainers[0].style.display != "none") {
+            closeAllNestedMenus();
+        }
+        else {
+            openAllNestedMenus();
+        }
     }
 }
-
-
-
 
 
 ////////////////initializing view, closing notepads, showing startup main content
@@ -730,8 +747,6 @@ function expandCollapseSkills(evt) {
 // clearHeaderInstructionsAndLiveDisplay();
 // document.getElementById("main-skills").click();
 //////////////////////////////////
-
-
 
 function addSkillToDatabase() {
 
@@ -780,11 +795,11 @@ function addSkillToDatabase() {
         row["instructions"] = "";
         database["startupObject"].push(JSON.parse(JSON.stringify(row)));
     }
-
-
     rebuildContent();
+}
 
-
+function askConfirm() {
+    return "Don't forge to save your data!\nAre you sure you want to close?";
 }
 
 function rebuildContent() {
@@ -804,6 +819,7 @@ function rebuildContent() {
     removeEventListenerToSkillUpArrows();
     removeEventListenerToSkillDownArrows();
     removeEventListenerToSkillDeleteButtons();
+    removeEventListenerToUpdateInstructionsButton();
     buildElementsFromDatabase();
     addEventListenersToMainButtons();
     document.getElementById("expand-collapse-skills-button").addEventListener("click", expandCollapseSkills);
@@ -819,6 +835,7 @@ function rebuildContent() {
     addEventListenerToSkillUpArrows();
     addEventListenerToSkillDownArrows();
     addEventListenerToSkillDeleteButtons();
+    addEventListenerToUpdateInstructionsButton();
     closeAllNestedMenus();
     closeAllNotepads();
     clearHeaderInstructionsAndLiveDisplay();
@@ -841,6 +858,7 @@ addEventListenersToMoveCategoryDown();
 addEventListenerToSkillUpArrows();
 addEventListenerToSkillDownArrows();
 addEventListenerToSkillDeleteButtons();
+addEventListenerToUpdateInstructionsButton();
 document.getElementById("add-skill-button").addEventListener("click", addSkillToDatabase);
 closeAllNestedMenus();
 closeAllNotepads();
@@ -848,6 +866,4 @@ clearHeaderInstructionsAndLiveDisplay();
 let developerMode = true;
 initializeDeveloperMode();
 document.getElementById("main-skills").click();
-
-
-
+window.onbeforeunload = askConfirm;

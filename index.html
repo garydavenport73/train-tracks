@@ -12,7 +12,7 @@
     <h1>Title</h1>
     <div>
         <input type="text" id="first-name" placeholder="first name">
-        <input type="text" placeholder="last name">
+        <input type="text" id="last-name" placeholder="last name">
     </div>
     <nav>
         <button class="show-main" id="main-skills">Skills</button>
@@ -162,7 +162,7 @@
                     <pre class="instruction" id="sk2-instructions">instructions for skill 2</pre>
                     <pre class="instruction" id="sk3-instructions">instructions for skill 3</pre>
                     <pre class="instruction" id="sk4-instructions">instructions for skill 4</pre>
-                    <button class="dev-mode">update instructions</button>
+                    <button class="dev-mode" id="update-instructions-button">update instructions</button>
                 </div>
                 <div id="live-display">
                     Other info goes here.
@@ -170,8 +170,14 @@
             </div>
         </div>
     </main>
-    <nav><button>Load</button><button>Save</button><button onclick="rebuildContent()">test</button></nav>
-    <script src="database.js"></script>
+    <nav><button>Load</button><button>Save</button></nav>
+    <!-- <script src="database.js"></script> -->
+    <script>let database={
+        "startupObject":[],
+        "entries":[]
+    }
+    
+    </script>
     <script src="javascript.js"></script>
 </body>
 
