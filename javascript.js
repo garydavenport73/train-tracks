@@ -36,7 +36,7 @@ function buildElementsFromDatabase() {//note database is a global object
                 str += "<span class='show-note'>📄</span>";
                 str += "</span>";
                 str += "</div>";
-                str += "<button class='dev-mode edit-skill-button'>✐</button><button class='dev-mode'>&uarr;<button class='dev-mode'>&darr;</button></button><button class='dev-mode'>X</button>";
+                str += "<button class='dev-mode edit-skill-button'>✐</button><button class='dev-mode skill-up' id='skill-up-MYTOKEN'>&uarr;<button class='dev-mode skill-down' id='skill-down-MYTOKEN'>&darr;</button></button><button class='dev-mode skill-delete' id='skill-delete-MYTOKEN'>X</button>";
                 str += "<textarea class='notepad' id='MYTOKEN-notepad' placeholder='your notes here'></textarea>";
                 str += "</div>";
                 //////////////////
@@ -114,7 +114,7 @@ function moveCategoryUp(evt) {
             }
         }
 
-        database["startupObject"]=newStartupObject;
+        database["startupObject"] = newStartupObject;
         rebuildContent();
     }
 }
@@ -151,7 +151,7 @@ function moveCategoryDown(evt) {
     let index = arr.indexOf(category);
     console.log(index);
 
-    if (index >= arr.length-1) {//already the highest value, do nothing
+    if (index >= arr.length - 1) {//already the highest value, do nothing
         return;
     }
 
@@ -159,7 +159,7 @@ function moveCategoryDown(evt) {
         //we have array of best order
         //switch array elements
         //console.log(arr)
-        arr[index]=arr[index + 1];
+        arr[index] = arr[index + 1];
         arr[index + 1] = category;
 
         for (let i = 0; i < arr.length; i++) {
@@ -170,7 +170,7 @@ function moveCategoryDown(evt) {
             }
         }
 
-        database["startupObject"]=newStartupObject;
+        database["startupObject"] = newStartupObject;
         rebuildContent();
     }
 
@@ -481,7 +481,7 @@ function editSkill(evt) {
     let baseId = evt.target.parentElement.id;
     //console.log(baseId);
 
-    let index=findRowIndex(database["startupObject"],"base-id",baseId);
+    let index = findRowIndex(database["startupObject"], "base-id", baseId);
     console.log(index);
 
     document.getElementById("main-add-skill").click();
@@ -494,8 +494,8 @@ function editSkill(evt) {
 
     console.log(database["startupObject"][index]["category"]);
     console.log(database["startupObject"][index]["name"]);
-    document.getElementById("entry-skill-category").value=database["startupObject"][index]["category"];
-    document.getElementById("entry-skill-name").value=database["startupObject"][index]["name"];
+    document.getElementById("entry-skill-category").value = database["startupObject"][index]["category"];
+    document.getElementById("entry-skill-name").value = database["startupObject"][index]["name"];
 
 
 }
@@ -517,6 +517,131 @@ function removeEventListenersToEditSkillNameh4s() {
         h4.removeEventListener("click", processH4Click);
     }
 }
+
+
+function addEventListenerToSkillUpArrows() {
+    let upArrows = document.getElementsByClassName("skill-up");
+    for (let i = 0; i < upArrows.length; i++) {
+        upArrows[i].addEventListener("click", moveSkillUp);
+    }
+}
+
+function removeEventListenerToSkillUpArrows() {
+    let upArrows = document.getElementsByClassName("skill-up");
+    for (let i = 0; i < upArrows.length; i++) {
+        upArrows[i].removeEventListener("click", moveSkillUp);
+    }
+}
+
+
+function moveSkillUp(evt) {
+    let baseId = evt.target.id.replace("skill-up-", "");
+    //find the category
+    let rows = database["startupObject"];
+    let index = findRowIndex(rows, "base-id", baseId);
+    let category = rows[index]["category"];
+
+    //find all the skills under the same category
+    let arr = [];
+    for (let i = 0; i < rows.length; i++) {
+        if (rows[i]["category"] === category) {
+            arr.push(i);
+        }
+    }
+    //if index is in position 0, then do nothing
+    if (index === arr[0]) {
+        return;
+    }
+    else {
+
+        //find which index matches the array
+
+        let arrIndex = arr.indexOf(index);
+        let lowIndex = arr[arrIndex - 1];
+        //switch rows
+        let rowMoveLow = JSON.parse(JSON.stringify(rows[index]));
+        let rowMoveUp = JSON.parse(JSON.stringify(rows[lowIndex]));
+
+        rows[index] = rowMoveUp;
+        rows[lowIndex] = rowMoveLow;
+
+        rebuildContent();
+    }
+}
+
+function addEventListenerToSkillDeleteButtons() {
+    let deleteButtons = document.getElementsByClassName("skill-delete");
+    for (let i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener("click", deleteSkill);
+    }
+}
+
+function removeEventListenerToSkillDeleteButtons() {
+    let deleteButtons = document.getElementsByClassName("skill-delete");
+    for (let i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].removeEventListener("click", deleteSkill);
+    }
+}
+
+function deleteSkill(evt){
+    let baseId=evt.target.id.replace("skill-delete-","");
+    let index=findRowIndex(database["startupObject"],"base-id",baseId);
+    database["startupObject"].splice(index,1);
+    rebuildContent();
+}
+
+
+function addEventListenerToSkillDownArrows() {
+    let downArrows = document.getElementsByClassName("skill-down");
+    for (let i = 0; i < downArrows.length; i++) {
+        downArrows[i].addEventListener("click", moveSkillDown);
+    }
+}
+
+function removeEventListenerToSkillDownArrows() {
+    let downArrows = document.getElementsByClassName("skill-down");
+    for (let i = 0; i < downArrows.length; i++) {
+        downArrows[i].removeEventListener("click", moveSkillDown);
+    }
+}
+
+function moveSkillDown(evt) {
+    let baseId = evt.target.id.replace("skill-down-", "");
+    //find the category
+    let rows = database["startupObject"];
+    let index = findRowIndex(rows, "base-id", baseId);
+    let category = rows[index]["category"];
+
+    //find all the skills under the same category
+    let arr = [];
+    for (let i = 0; i < rows.length; i++) {
+        if (rows[i]["category"] === category) {
+            arr.push(i);
+        }
+    }
+    //if index is in position at end, then do nothing
+    if (index === arr[arr.length-1]) {
+        return;
+    }
+    else {
+
+        //find which index matches the array
+
+        let arrIndex = arr.indexOf(index);
+        let highIndex = arr[arrIndex + 1];
+        //switch rows
+        let rowMoveHigh = JSON.parse(JSON.stringify(rows[index]));
+        let rowMoveDown = JSON.parse(JSON.stringify(rows[highIndex]));
+
+        rows[index] = rowMoveDown;
+        rows[highIndex] = rowMoveHigh;
+
+        rebuildContent();
+    }
+}
+
+
+
 
 function findRowIndex(arrOfObjects, key, value) {
     for (let i = 0; i < arrOfObjects.length; i++) {
@@ -676,6 +801,9 @@ function rebuildContent() {
     removeEventListenersToEditSkillNameh4s();
     removeEventListenersToMoveCategoryUp();
     removeEventListenersToMoveCategoryDown();
+    removeEventListenerToSkillUpArrows();
+    removeEventListenerToSkillDownArrows();
+    removeEventListenerToSkillDeleteButtons();
     buildElementsFromDatabase();
     addEventListenersToMainButtons();
     document.getElementById("expand-collapse-skills-button").addEventListener("click", expandCollapseSkills);
@@ -688,6 +816,9 @@ function rebuildContent() {
     addEventListenersToEditSkillNameh4s();
     addEventListenersToMoveCategoryUp();
     addEventListenersToMoveCategoryDown();
+    addEventListenerToSkillUpArrows();
+    addEventListenerToSkillDownArrows();
+    addEventListenerToSkillDeleteButtons();
     closeAllNestedMenus();
     closeAllNotepads();
     clearHeaderInstructionsAndLiveDisplay();
@@ -707,6 +838,9 @@ addEventListenersToEditSkillButtons();
 addEventListenersToEditSkillNameh4s();
 addEventListenersToMoveCategoryUp();
 addEventListenersToMoveCategoryDown();
+addEventListenerToSkillUpArrows();
+addEventListenerToSkillDownArrows();
+addEventListenerToSkillDeleteButtons();
 document.getElementById("add-skill-button").addEventListener("click", addSkillToDatabase);
 closeAllNestedMenus();
 closeAllNotepads();

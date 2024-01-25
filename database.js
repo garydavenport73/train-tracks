@@ -10,13 +10,13 @@ let database={
             "base-id": "of2",
             "name": "Teach Lab .phrases",
             "category": "Documentation",
-            "instructions": "Teach phrases to pull labs into the note - \nexamples: \n  last lipid\n  last A1C\n  last thyroid\n  last hepatic\n  last cbc\n  last bmp\n\n.lastlab, need component basename.  Number of results, if *, pulls in all\n    .brieflab\n    .llval just the value\n    .llabd just the value\n    labrcnt recent\n    labrsltline single line\n    .fishbone\n\n.risrslt -&gt; all images\n    .risrsltimp -&gt; just impression\n    .edimaging -&gt; impressions in table format\n    .lastimgcat -&gt; go to orders activity, place ordre for cxr 2 view, will show code 36"
+            "instructions": "Teach phrases to pull labs into the note - \nexamples: \n  last lipid\n  last A1C\n  last thyroid\n  last hepatic\n  last cbc\n  last bmp\n\n.lastlab, need component basename.  Number of results, if *, pulls in all\n    .brieflab\n    .llval just the value\n    .llabd just the value\n    labrcnt recent\n    labrsltline single line\n    .fishbone\n\n.risrslt -&gt; all images\n    .risrsltimp -&gt; just impression\n    .edimaging -&gt; impressions in table format\n    .lastimgcat -&gt; go to orders activity, place ordre for cxr 2 view, will show code 36 .tcmdata"
         },
         {
             "base-id": "of3",
             "name": "Consider .PHQ and .ASCVD",
             "category": "Documentation",
-            "instructions": "Consider embedding smart phrases such as \n\n.PHQ\n.ASCVD \n\ninto note and then address it in A/P."
+            "instructions": "Consider embedding smart phrases such as \n\n.PHQ\n.ASCVD \n\ninto note and then address it in A/P.  .tcmdata  .awv"
         },
         {
             "base-id": "of4",
@@ -96,7 +96,7 @@ let database={
             "base-id": "of16",
             "name": "Wrap Up Activity",
             "category": "Customization",
-            "instructions": "Layout of Wrap Up pane\nAdd new speed buttons for level of visit.\n\nTip 17 - Visit Wrap Up - Personalize Level of Service\nEdit the Level of Service activity to speed up end-of-visit documentation. You can add up to 25 LOS buttons and 4\nmodifier buttons. You can personalize button names and choose how the buttons are ordered and grouped. For\nexample, you could list the preventative LOS codes, or, if you work with residents, have the GC modifier one-click\naway as a button.\n\n1. On the bottom of the patient workspace, in the visit taskbar click Level of Service.\n2. Click 🔧.\n3. Add a new button:\n ● Click Add in an empty rectangle.\n ● In the window that opens, add a Caption and Level of Service.\n ● Click Accept on the window.\n4. Add a modifier button:\n ● Click Add in an empty rectangle in the Modifiers list.\n ● In the window that opens, add a Caption and Modifier.\n ● Click Accept.\n5. Rearrange buttons: Drag and drop buttons to where you want them to appear.\n6. Edit a button:\n ● Hover over an existing button and click the edit pencil\nthat appears.\n ● In the window that opens, edit as needed and click Accept on the window.\n7. When done editing, click Accept."
+            "instructions": " Need speed button for plan of care fow medicare wellness visit.    Layout of Wrap Up pane\nAdd new speed buttons for level of visit.\n\nTip 17 - Visit Wrap Up - Personalize Level of Service\nEdit the Level of Service activity to speed up end-of-visit documentation. You can add up to 25 LOS buttons and 4\nmodifier buttons. You can personalize button names and choose how the buttons are ordered and grouped. For\nexample, you could list the preventative LOS codes, or, if you work with residents, have the GC modifier one-click\naway as a button.\n\n1. On the bottom of the patient workspace, in the visit taskbar click Level of Service.\n2. Click 🔧.\n3. Add a new button:\n ● Click Add in an empty rectangle.\n ● In the window that opens, add a Caption and Level of Service.\n ● Click Accept on the window.\n4. Add a modifier button:\n ● Click Add in an empty rectangle in the Modifiers list.\n ● In the window that opens, add a Caption and Modifier.\n ● Click Accept.\n5. Rearrange buttons: Drag and drop buttons to where you want them to appear.\n6. Edit a button:\n ● Hover over an existing button and click the edit pencil\nthat appears.\n ● In the window that opens, edit as needed and click Accept on the window.\n7. When done editing, click Accept."
         },
         {
             "base-id": "of17",
