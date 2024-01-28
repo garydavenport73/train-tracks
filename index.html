@@ -128,27 +128,29 @@
             </div>
             <div class="main-content" id="notes">
                 <h2>Notes</h2>
-                <textarea>notes here</textarea>
+                <textarea id="general-notes" placeholder="notes here"></textarea>
             </div>
             <div class="main-content" id="sessions">
                 <h2>Sessions</h2>
                 <div class="flex-column">
-                    <select>
-                        <option>Date 1</option>
-                        <option>Date 2</option>
-                    </select>
-                    <button>Show entire Log</button>
+                    <label for="sessions-select">Choose a training session:</label>
+
+                    <select id="sessions-select">
+
+                    </select> 
+                    <button id="show-log">Show entire Log</button>
                 </div>
             </div>
             <div class="main-content" id="schedule">
                 <h2>Schedule</h2>
                 <div class="flex-column">
                     <label for="date">Date</label>
-                    <input type="date" id="date">
+                    <input type="date" id="appt-date">
                     <label for="start-time">Start Time</label>
-                    <input type="time" id="start-time">
+                    <input type="time" id="appt-start-time">
                     <label for="end-time">End Time</label>
-                    <input type="time" id="end-time">
+                    <input type="time" id="appt-end-time">
+                    <button id="schedule-appt-button">Schedule Appointment</button>
                 </div>
             </div>
         </div>
@@ -170,14 +172,14 @@
             </div>
         </div>
     </main>
-    <nav><button>Load</button><button>Save</button></nav>
-    <!-- <script src="database.js"></script> -->
-    <script>let database={
+    <nav><button id="load-button">Load</button><button id="save-button">Save</button></nav>
+    <script src="database.js"></script>
+    <!-- <script>let database={
         "startupObject":[],
         "entries":[]
     }
     
-    </script>
+    </script> -->
     <script src="javascript.js"></script>
 </body>
 
