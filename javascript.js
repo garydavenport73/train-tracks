@@ -79,7 +79,8 @@ function buildElementsFromDatabase() {//note database is a global object
                 str += "</span>";
                 str += "</div>";
                 str += "<button class='dev-mode edit-skill-button'>✐</button><button class='dev-mode skill-up' id='skill-up-MYTOKEN'>&uarr;<button class='dev-mode skill-down' id='skill-down-MYTOKEN'>&darr;</button></button><button class='dev-mode skill-delete' id='skill-delete-MYTOKEN'>X</button>";
-                str += "<textarea class='notepad' id='MYTOKEN-notepad' placeholder='your notes here'></textarea>";
+                // str += "<textarea class='notepad' id='MYTOKEN-notepad' placeholder='your notes here'></textarea>";
+                str += "<textarea class='notepad' id='MYTOKEN-notepad'></textarea>";
                 str += "</div>";
                 //////////////////
                 str = str.replace(/MYTOKEN/g, initObj[j]["base-id"]);
