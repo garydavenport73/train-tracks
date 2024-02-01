@@ -669,7 +669,7 @@ function processH4Click(evt) {
     //put info in title header
     let str = "";
     // str += "for " + baseId;
-    str += "<em>Instructions for:</em>"
+    // str += "<em>Instructions for:</em>";
     str += "<h3>" + database["startupObject"][index]["category"] + "</h3>";
     str += "<h4>" + database["startupObject"][index]["name"] + "</h4>";
     str += "<hr>";
@@ -1229,6 +1229,37 @@ function askConfirm() {
     return "Don't forge to save your data!\nAre you sure you want to close?";
 }
 
+document.getElementsByTagName("h1")[0].addEventListener("click",showLicense);
+function showLicense(){
+let str="This program helps track trainees.\n\n"+
+"Copyright (C) 2024 Gary Davenport"+
+"\n\n"+
+"This library is free software; you can redistribute it and/or "+
+"modify it under the terms of the GNU Library General Public "+
+"License as published by the Free Software Foundation; either "+
+"version 2 of the License, or (at your option) any later version."+
+"\n\n"+
+"This library is distributed in the hope that it will be useful, "+
+"but WITHOUT ANY WARRANTY; without even the implied warranty of "+
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU "+
+"Library General Public License for more details."+
+"\n\n"+
+"You should have received a copy of the GNU Library General Public "+
+"License along with this library; if not, write to the"+
+"\n\n"+
+"Free Software Foundation, Inc., \n51 Franklin St, Fifth Floor, \n"+
+"Boston, MA  02110-1301, USA."+
+"\n\n"+
+"Also add information on how to contact you by electronic and paper mail."+
+"\n\n"+
+"You should also get your employer (if you work as a programmer) or your school, "+
+"if any, to sign a \"copyright disclaimer\" for the library, if necessary.\n"+
+"\n"+
+"Signed: Gary Davenport, 1/31/2024";
+alert(str);
+}
+
+
 function rebuildContent() {
     removeEventListenersToMainButtons();
     document.getElementById("expand-collapse-skills-button").removeEventListener("click", expandCollapseSkills);
@@ -1267,6 +1298,7 @@ function rebuildContent() {
     initializeDeveloperMode();
     document.getElementById("main-skills").click();
 }
+
 
 buildElementsFromDatabase();
 addEventListenersToMainButtons();

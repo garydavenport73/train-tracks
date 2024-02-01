@@ -3,11 +3,13 @@ html {
     box-sizing: border-box;
     font-size: 16px;
 }
+
 *,
 *:before,
 *:after {
     box-sizing: inherit;
 }
+
 body,
 h1,
 h2,
@@ -22,43 +24,57 @@ ul {
     padding: 0;
     font-weight: normal;
 }
+
 ol,
 ul {
     list-style: none;
 }
+
 img {
     max-width: 100%;
     height: auto;
 }
+
 /* https://www.digitalocean.com/community/tutorials/css-minimal-css-reset */
-/* layout *//* layout *//* layout *//* layout *//* layout *//* layout */
+/* layout */
+/* layout */
+/* layout */
+/* layout */
+/* layout */
+/* layout */
 body {
     /* width: 900px; */
     width: 640px;
     margin: auto;
 }
+
 .row {
     display: flex;
     flex-direction: row;
 }
+
 .flex-column {
     display: flex;
     flex-direction: column;
 }
+
 .space-between {
     justify-content: space-between;
 }
+
 main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
+
 #top-nav {
 
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
 }
+
 #bottom-nav {
     position: sticky;
     bottom: 0px;
@@ -66,145 +82,302 @@ main {
     flex-direction: row;
     justify-content: center;
 }
+
 #main-left,
 #main-right {
     height: 480px;
-    width: 100%;
     overflow-y: scroll;
 }
+
 .star-rating {
     display: none;
 }
+
 pre {
     white-space: pre-wrap;
     margin: 0;
 }
+
 .stars-and-controls-container {
-    min-width: 7rem;
+    min-width: 9rem;
 }
+
 .notepad {
     max-width: 85%;
     min-width: 85%;
-    margin-left:1rem;
+    margin-left: 1rem;
 }
-#general-notes{
-        min-width: 100%;
+
+#general-notes {
+    min-width: 100%;
     max-width: 100%;
 }
+
 h2 {
     padding-left: 0.25rem;
+
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size:30px;
+
+
+
 }
-h3{
-    padding: .3rem 0 0.3rem 0.5rem;
-}
-h4{
+
+
+
+h4 {
+    margin-left: 1rem;
+    padding:0.3rem 0;
+    /* padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+
     margin-left: 1rem;
     padding: 0.1rem 0;
+      padding-top: 0.1rem;
+      padding-bottom: 0.1rem;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: 400;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    font-size: 18px; */
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size:18px;
 }
+
+.stars-and-controls-container{
+    font-size: 15px;
+}
+
+.star-container,.show-note,.refresh-stars{
+    font-size: 1.3rem;
+}
+
+#main-left,#main-right{
+    /* width: auto; */
+}
+
+
+#main-left,#main-right{
+   width: 100%;
+}
+
 @media only screen and (max-width: 600px) {
     body {
         max-width: 480px;
         width: 100%;
     }
+
     main {
         display: flex;
         flex-direction: column;
         justify-content: unset;
     }
+
+
+    #main-left, #main-right{
+        width: auto;
+    }
 }
-/* layout *//* layout *//* layout *//* layout *//* layout *//* layout *//* layout */
-/* style *//* style *//* style *//* style *//* style *//* style *//* style */
-    #title-header {
-        background-color: rgb(128, 206, 215);
-    }
-    .skill-container,
-    #main-left,
-    #main-right,
-    #name-div {
-        background-color: rgb(154, 209, 212);
-    }
-    #main-right,
-    #main-left,
-    nav {
-        background-image: linear-gradient(to right, rgb(137, 151, 165), lightgray);
-    }
-    textarea {
-        background-color: snow;
-    }
-    button {
-        background-color: lightgray;
-        border: 1px solid grey;
-    }
-    html,
-    pre {
-        font-family: Arial, Helvetica, sans-serif;
-    }
-    #expand-collapse-skills-button,
-    #toggle-notes {
-        vertical-align: middle;
-        margin-bottom: 0.2rem;
-    }
-    .skill-name-h4:hover,
-    .nested-menu:hover,
-    button:hover {
-        background-color: snow;
-    }
-    #main-left,
-    #main-right {
-        /* scrollbar-color:grey rgb(204, 219, 220); */
-        scrollbar-color: grey snow;
-    }
-    /* SCSS RGB */
-    /* $prussian-blue: rgba(0, 50, 73, 1);
+
+/* layout */
+/* layout */
+/* layout */
+/* layout */
+/* layout */
+/* layout */
+/* layout */
+/* style */
+/* style */
+/* style */
+/* style */
+/* style */
+/* style */
+/* style */
+html {
+    font-size: 15px;
+}
+
+#title-header {
+    background-color: rgb(128, 206, 215);
+}
+
+.skill-container,
+#main-left,
+#main-right,
+#name-div {
+    background-color: rgb(154, 209, 212);
+    background-image: radial-gradient( rgb(154, 209, 212), rgb(116, 177, 180));
+}
+
+
+main,
+nav {
+    background-image: linear-gradient(to right, rgb(137, 151, 165), lightgray);
+}
+
+
+
+textarea {
+    background-color: snow;
+}
+
+button {
+    background-color: lightgray;
+    border: 1px solid grey;
+    font-size: 0.7em;
+    padding: 0.2em;
+    min-width: 2em;
+    border-radius: 0.8rem;
+    font-size: 1.1em;
+    padding: 0.3em;
+}
+
+html,
+pre {
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* font-family: "Segoe UI", Arial, sans-serif; */
+}
+
+#expand-collapse-skills-button,
+#toggle-notes {
+    /* vertical-align: middle;
+        margin-bottom: 0.2rem; */
+
+    font-size: 0.7em;
+    padding: 0.2em;
+    min-width: 2em;
+    border-radius: 0.8rem;
+
+
+
+
+}
+
+.skill-name-h4:hover,
+.nested-menu:hover,
+button:hover {
+    background-color: lightgrey;
+}
+
+#main-left,
+#main-right {
+    /* scrollbar-color:grey rgb(204, 219, 220); */
+    scrollbar-color: grey lightgrey;
+    margin:5px;
+    border-radius: 5px;
+    /* width: 100%; */
+}
+
+/* SCSS RGB */
+/* $prussian-blue: rgba(0, 50, 73, 1);
     $cerulean: rgba(0, 126, 167, 1);
     $non-photo-blue-2: rgba(128, 206, 215, 1);
     $non-photo-blue: rgba(154, 209, 212, 1);
     $platinum: rgba(204, 219, 220, 1); */
-    input {
-        background-color: snow;
-    }
-    nav {
-        border: 1px solid grey;
-        background-color: rgb(204, 219, 220);
-    }
-    .star {
-        color: gold;
-    }
-    .star:hover {
-        background-color: white;
-        color: black;
-        border-radius: 0.5rem;
-    }
-    .star-container {
-        background-color: grey;
-        border-radius: 0.5rem;
-    }
-    .instruction {
-        padding: 0.7rem;
-        background-color: rgb(204, 219, 220);
-    }
-    h1 {
-        text-align: center;
-        background-color: rgb(0, 50, 73);
-        color: rgb(204, 219, 220);
-    }
-    h2 {
-        background-color: rgb(0, 126, 167);
-        color: snow;
-    }
-    h1{
-        padding: 0 0.5rem 0 0.5rem;
-    }
-    h3 {
-        border-radius: 0.3rem;
-        border: 1px solid grey;
-        background-color: rgb(128, 206, 215);
-    }
-    input {
-        height: 1.7rem;
-    }
-    button {
+input {
+    background-color: snow;
+}
+
+nav {
+    /* border: 1px solid grey; */
+    background-color: rgb(204, 219, 220);
+}
+
+.star {
+    color: gold;
+}
+
+.star:hover {
+    background-color: lightgrey;
+    color: black;
+    border-radius: 0.5rem;
+}
+
+.star-container {
+    background-color: grey;
+    border-radius: 0.5rem;
+}
+
+.instruction {
+    padding: 0.7rem;
+    background-color: rgb(204, 219, 220);
+}
+
+h1 {
+    text-align: center;
+
+    color: rgb(204, 219, 220);
+    background-color: rgb(0, 126, 167);
+    background-image: linear-gradient(to right, rgb(2, 108, 143), rgb(27, 139, 177));
+    border-radius: 5px;
+    padding:0.2rem;
+    font-size: 34px;
+}
+
+h2 {
+    background-color: rgb(0, 126, 167);
+    color: snow;
+    font-size: 30px;
+    /* margin:0;
+    padding:0; */
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+
+
+h3 {
+    border:1px solid cadetblue;
+    border-radius: 0.3rem;
+    background-color: rgb(83, 174, 184);
+}
+h3 {
+    padding: .3rem 0 0.3rem 0.5rem;
+    padding: .3rem 0 0.3rem 0.5rem;
+    font-size: 24px;
+    margin:0;
+    border-radius: 5px;
+
+}
+
+input {
+    height: 1.7rem;
+
+
+
+        border-radius: 0.4rem;
+
+     
+        font-size: 1.2rem;
+      
+
+}
+
+select{
+
+        font-size: 1.2rem;
+        padding:0.3rem;
+        margin:0;
+        border-radius: 0.8rem;
+      
+}
+
+textarea{
+    font:inherit;
+    font-size: 15px;
+}
+/* button {
         padding: 0.2rem;
         border-radius: 0.3rem;
-    }
-    /* style *//* style *//* style *//* style *//* style *//* style *//* style */
+    } */
+/* style */
+/* style */
+/* style */
+/* style */
+/* style */
+/* style */
+/* style */
